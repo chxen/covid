@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 from django.conf.urls.static import static
 from predictor import views
 
@@ -23,7 +22,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('^$', views.index, name='Homepage'),
-    url('predict', views.predictCovidDisease, name='predict'),
-
+    re_path('^$', views.index, name='Homepage'),
+    re_path('predict', views.predictCovidDisease, name='predict'),
+    path('statistics', views.statistics, name='statistics'),
+    path('model', views.model, name='model'),
+    path('news', views.news, name='news')
 ]

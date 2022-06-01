@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render, redirect
 import joblib
 from .models import CovidList
@@ -58,3 +59,39 @@ def predictCovidDisease(request):
     obj.save()
 
     return render(request, 'index.html', context)
+
+def statistics(request):
+    data = True
+    result = None
+    gobalSummary = None
+    countries = None
+    while(data):
+        try:
+            result = requests.get('https://api.covid19api.com/summary')
+            json = result.json()
+
+            globalSummary = json['Global']
+            countries = json['Countries']
+            data = False
+        except:
+            data = True
+    return render(request, 'statistic.html', {'globalSummary': globalSummary, 'countries': countries})
+
+def model(request):
+    return render(request, 'model.html')
+
+def news(request):
+    r = requests.get('http://api.mediastack.com/v1/news?access_key=5c515553c05e22539d0f93da0afbcb1c&&keywords=virus')
+    res = r.json()
+    data = res['data']
+    title = []
+    description = []
+    image = []
+    url = []
+    for i in data:
+        title.append(i['title'])
+        description.append(i['description'])
+        image.append(i['image'])
+        url.append(i['url'])
+    news = zip(title, description, image, url)
+    return render(request, 'news.html', {'news':news})

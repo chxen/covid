@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MARS-COV</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Form CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-image-checkbox.css' %}">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet ">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="kacherepanova@edu.hse.ru">kacherepanova@edu.hse.ru</a>
+        <i class="icofont-phone"></i> +79397263835
+        <i class="icofont-google-map"></i> Russia, Moscow, HSE University, MIEM
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo mr-auto"><a href="/">MARS-COV</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="{% url 'statistics' %}">Статистика</a></li>
+          <li class="active"><a href="{% url 'news' %}">Новости</a></li>
+          <li><a href="{% url 'model' %}">Модель</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      <a href="tg://resolve?domain=mars_cov_bot" class="appointment-btn scrollto">Чат-бот</a>
+
+    </div>
+  </header><!-- End Header -->
+  <div class="container">
+    <br><br><br><br><br><br>
+    <h2 class="text-center">Последние новости о вирусных инфекциях</h2>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for title, description, image, url in news %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                      <img src="{{ image }}" alt="news" />
+
+                        <div class="card-body">
+                            <a href="{{ url }}"><h4 class="card-text">{{ title }}</h4> </a>
+                            <p class="card-text">{{ description }}</p>
+                            <div class="d-flex justify-content-between align-items-center"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container d-md-flex py-4">
+
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          <span></span>
+        </div>
+        <div class="credits">
+          &copy; Черепанова Ксения
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+</body>
+</html>
